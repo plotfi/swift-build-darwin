@@ -8,6 +8,7 @@
 # Fill these in.
 # SourceRoot=/Users/plotfi/local/S4
 # OSTriple=arm64-apple-darwin21.4.0
+# export PATH=/Applications/CMake.app/Contents/bin/:/usr/bin:/bin:/usr/sbin:/sbin
 
 SourceCache=$SourceRoot
 BuildDir=$SourceRoot/build
@@ -31,12 +32,17 @@ cmake                                                                           
   -D CMAKE_INSTALL_PREFIX="${ToolchainInstallRoot}/usr"                         \
   -D LLVM_EXTERNAL_CMARK_SOURCE_DIR="${SourceCache}/cmark"                      \
   -D LLVM_EXTERNAL_SWIFT_SOURCE_DIR="${SourceCache}/swift"                      \
+  -D PYTHON_EXECUTABLE=/usr/bin/python3                                         \
+  -D LLVM_EXTERNAL_swift_PYTHON_EXECUTABLE=/usr/bin/python3                     \
+  -D LLVM_EXTERNAL_cmark_PYTHON_EXECUTABLE=/usr/bin/python3                     \
   -D LLVM_ENABLE_ASSERTIONS=ON                                                  \
-  -D LLVM_ENABLE_PROJECTS="llvm;clang;libcxx;libcxxabi"                         \
+  -D LLVM_ENABLE_PROJECTS="llvm;clang;libcxx;libcxxabi;clang-tools-extra;compiler-rt" \
+  -D LLVM_EXTERNAL_PROJECTS="cmark;swift"                                       \
   -D SWIFT_ENABLE_EXPERIMENTAL_CONCURRENCY=YES                                  \
   -D SWIFT_ENABLE_EXPERIMENTAL_DIFFERENTIABLE_PROGRAMMING=YES                   \
   -D SWIFT_ENABLE_EXPERIMENTAL_DISTRIBUTED=YES                                  \
-  -D SWIFT_ENABLE_EXPERIMENTAL_STRING_PROCESSING=YES                            \
+  -D SWIFT_ENABLE_EXPERIMENTAL_STRING_PROCESSING=NO                             \
+  -D SWIFT_STDLIB_SUPPORT_BACK_DEPLOYMENT=NO                                    \
   -D SWIFT_PATH_TO_LIBDISPATCH_SOURCE=${SourceCache}/swift-corelibs-libdispatch \
   -G Ninja                                                                      \
   -S "${SourceCache}/llvm-project/llvm"
@@ -72,10 +78,12 @@ cmake                                                                           
   -D LLVM_TABLEGEN=${BinaryCache}/toolchain/bin/llvm-tblgen                     \
   -D Clang_DIR=${BinaryCache}/toolchain/lib/cmake/clang                         \
   -D LLVM_DIR="${BinaryCache}/runtime-llvm/lib/cmake/llvm"                      \
+  -D PYTHON_EXECUTABLE=/usr/bin/python3                                         \
   -D SWIFT_ENABLE_EXPERIMENTAL_CONCURRENCY=YES                                  \
   -D SWIFT_ENABLE_EXPERIMENTAL_DIFFERENTIABLE_PROGRAMMING=YES                   \
   -D SWIFT_ENABLE_EXPERIMENTAL_DISTRIBUTED=YES                                  \
-  -D SWIFT_ENABLE_EXPERIMENTAL_STRING_PROCESSING=YES                            \
+  -D SWIFT_ENABLE_EXPERIMENTAL_STRING_PROCESSING=NO                             \
+  -D SWIFT_STDLIB_SUPPORT_BACK_DEPLOYMENT=NO                                    \
   -D SWIFT_NATIVE_SWIFT_TOOLS_PATH="${BinaryCache}/toolchain/bin"               \
   -D SWIFT_PATH_TO_LIBDISPATCH_SOURCE=${SourceCache}/swift-corelibs-libdispatch \
   -G Ninja                                                                      \
@@ -394,3 +402,4 @@ cmake --build "${BinaryCache}/swift-corelibs-foundation" --target install
 # cmake --build "${BinaryCache}/sourcekit-lsp" --target install
 # 
 # mv -uv "${ToolchainInstallRoot}"/usr/lib/swift/linux/*.so "${ToolchainInstallRoot}"/usr/lib
+
