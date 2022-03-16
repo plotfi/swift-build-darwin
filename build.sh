@@ -5,8 +5,9 @@
 # Base on https://github.com/compnerd/swift-build by compnerd.
 # Modified specifically for Darwin.
 
-SourceRoot=/Users/plotfi/local/S4
-OSTriple=arm64-apple-darwin21.4.0
+# Fill these in.
+# SourceRoot=/Users/plotfi/local/S4
+# OSTriple=arm64-apple-darwin21.4.0
 
 SourceCache=$SourceRoot
 BuildDir=$SourceRoot/build
