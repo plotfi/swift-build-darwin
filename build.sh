@@ -1,5 +1,9 @@
 #!/bin/bash
 # Copyright 2021 Saleem Abdulrasool <compnerd@compnerd.org>
+# Copyright 2022 Puyan Lotfi <puyan@puyan.org>
+#
+# Base on https://github.com/compnerd/swift-build by compnerd.
+# Modified specifically for Darwin.
 
 SourceRoot=/Users/plotfi/local/S4
 OSTriple=arm64-apple-darwin21.4.0
