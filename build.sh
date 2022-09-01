@@ -10,10 +10,12 @@ export PATH=/Applications/CMake.app/Contents/bin/:/usr/bin:/bin:/usr/sbin:/sbin
 
 # Fill these in.
 SourceRoot=$(pwd)
-BuildType=Debug
+# BuildType=Release
+BuildType=RelWithDebInfo
+# BuildType=Debug
 
 SourceCache=$SourceRoot
-BuildDir=$SourceRoot/build
+BuildDir=$SourceRoot/build/$BuildType
 BinaryCache=$BuildDir/BinaryCache
 InstallRoot=$BuildDir/Library
 ToolchainInstallRoot=${InstallRoot}/Developer/Toolchains/unknown-Asserts-development.xctoolchain
@@ -26,6 +28,11 @@ export PYTHON_HOME=/usr/bin/
 # rm -rf $BuildDir
 
 set -e
+
+cmake -E copy $SourceRoot/swift/stdlib/public/Cxx/cxxshim/libcxxshim.modulemap $BinaryCache/toolchain/./lib/swift/macosx/x86_64/libcxxshim.modulemap
+cmake -E copy $SourceRoot/swift/stdlib/public/Cxx/cxxshim/libcxxshim.h         $BinaryCache/toolchain/./lib/swift/macosx/x86_64/libcxxshim.h
+cmake -E copy $SourceRoot/swift/stdlib/public/Cxx/cxxshim/libcxxshim.modulemap $BinaryCache/toolchain/./lib/swift/macosx/arm64/libcxxshim.modulemap
+cmake -E copy $SourceRoot/swift/stdlib/public/Cxx/cxxshim/libcxxshim.h         $BinaryCache/toolchain/./lib/swift/macosx/arm64/libcxxshim.h
 
 # toolchain
 cmake                                                                           \
