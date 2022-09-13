@@ -53,7 +53,7 @@ cmake                                                                           
   -D SWIFT_STDLIB_ENABLE_OBJC_INTEROP=ON                                        \
   -D LLVM_ENABLE_ASSERTIONS=ON                                                  \
   -D CMAKE_OSX_DEPLOYMENT_TARGET=12.3                                           \
-  -D SWIFT_PATH_TO_SWIFT_SYNTAX_SOURCE=${SourceCache}/swift-syntax                      \
+  -D SWIFT_PATH_TO_SWIFT_SYNTAX_SOURCE=${SourceCache}/swift-syntax              \
   -D LLVM_ENABLE_PROJECTS="llvm;clang;lld;libcxx;libcxxabi;clang-tools-extra;compiler-rt" \
   -D LLVM_EXTERNAL_PROJECTS="cmark;swift"                                       \
   -D CMAKE_VERBOSE_MAKEFILE=OFF                                                 \
