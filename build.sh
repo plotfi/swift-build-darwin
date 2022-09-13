@@ -53,13 +53,15 @@ cmake                                                                           
   -D SWIFT_STDLIB_ENABLE_OBJC_INTEROP=ON                                        \
   -D LLVM_ENABLE_ASSERTIONS=ON                                                  \
   -D CMAKE_OSX_DEPLOYMENT_TARGET=12.3                                           \
+  -D SWIFT_PATH_TO_SWIFT_SYNTAX_SOURCE=${SourceCache}/swift-syntax                      \
   -D LLVM_ENABLE_PROJECTS="llvm;clang;lld;libcxx;libcxxabi;clang-tools-extra;compiler-rt" \
   -D LLVM_EXTERNAL_PROJECTS="cmark;swift"                                       \
   -D CMAKE_VERBOSE_MAKEFILE=OFF                                                 \
   -D SWIFT_ENABLE_EXPERIMENTAL_CONCURRENCY=YES                                  \
   -D SWIFT_ENABLE_EXPERIMENTAL_DIFFERENTIABLE_PROGRAMMING=YES                   \
   -D SWIFT_ENABLE_EXPERIMENTAL_DISTRIBUTED=YES                                  \
-  -D SWIFT_ENABLE_EXPERIMENTAL_STRING_PROCESSING=NO                             \
+  -D SWIFT_ENABLE_EXPERIMENTAL_STRING_PROCESSING=YES                            \
+  -D EXPERIMENTAL_STRING_PROCESSING_SOURCE_DIR=${SourceCache}/swift-experimental-string-processing \
   -D SWIFT_STDLIB_SUPPORT_BACK_DEPLOYMENT=YES                                   \
   -D SWIFT_PATH_TO_LIBDISPATCH_SOURCE=${SourceCache}/swift-corelibs-libdispatch \
   -G Ninja                                                                      \
